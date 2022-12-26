@@ -3,9 +3,17 @@
         <title>Tyler&#39;s Blog📰</title>
         <link>https://tyler-sdust.github.io/</link>
         <description>一时兴起瞎几把搞的blog网站😁</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 24 Dec 2022 21:17:54 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 26 Dec 2022 22:11:54 &#43;0800</lastBuildDate>
             <atom:link href="https://tyler-sdust.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>家用Linux服务器通用服务搭建教程</title>
+    <link>https://tyler-sdust.github.io/demo/</link>
+    <pubDate>Mon, 26 Dec 2022 22:11:54 &#43;0800</pubDate>
+    <author>Tyler</author>
+    <guid>https://tyler-sdust.github.io/demo/</guid>
+    <description><![CDATA[一个家用服务器常用服务的详细搭建教程，包括但不限于samba文件共享、FTP服务器、FRP内网穿透、AdGuard Home广告过滤、qBit]]></description>
+</item>
+<item>
     <title>这里什么也没有</title>
     <link>https://tyler-sdust.github.io/first_post/</link>
     <pubDate>Sat, 24 Dec 2022 21:17:54 &#43;0800</pubDate>
