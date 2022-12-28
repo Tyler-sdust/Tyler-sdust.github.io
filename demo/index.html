@@ -112,28 +112,26 @@
     </div><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">家用Linux服务器通用服务搭建教程</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Tyler-sdust" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Tyler</a>
 </span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-26">2022-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2753 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="true">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/title.jpg"
+        data-srcset="/images/title.jpg, /images/title.jpg 1.5x, /images/title.jpg 2x"
+        data-sizes="auto"
+        alt="/images/title.jpg"
+        title="/images/title.jpg" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li>
-          <ul>
-            <li><a href="#emspemsp一个家用服务器常用服务的详细搭建教程包括但不限于font-colorredsamba文件共享ftp服务器frp内网穿透adguard-home广告过滤qbittorrent-web下载器font等服务的搭建教程文中所用文本编辑器为vim不熟悉相关用法可用其他编辑器替代或自行百度相关命令及用法本文不再赘述以下内容在font-colorredubuntu-2004-lts-serverfont系统中完全适用其他linux系统由于包管理工具与软件安装路径的差异相关配置可能略有出入">  一个家用服务器常用服务的详细搭建教程，包括但不限于<font color=red>samba文件共享、FTP服务器、FRP内网穿透、AdGuard Home广告过滤、qBittorrent Web下载器</font>等服务的搭建教程；文中所用文本编辑器为vim，不熟悉相关用法可用其他编辑器替代或自行百度相关命令及用法，本文不再赘述；以下内容在<font color=red>Ubuntu 20.04 LTS Server</font>系统中完全适用，其他Linux系统由于包管理工具与软件安装路径的差异，相关配置可能略有出入。</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
     <li><a href="#font-colorgreen1-samba文件共享font"><strong><font color=green>1. SAMBA文件共享</font></strong></a>
       <ul>
         <li><a href="#11-安装samba">1.1 安装samba</a></li>
@@ -154,7 +152,7 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h4 id="emspemsp一个家用服务器常用服务的详细搭建教程包括但不限于font-colorredsamba文件共享ftp服务器frp内网穿透adguard-home广告过滤qbittorrent-web下载器font等服务的搭建教程文中所用文本编辑器为vim不熟悉相关用法可用其他编辑器替代或自行百度相关命令及用法本文不再赘述以下内容在font-colorredubuntu-2004-lts-serverfont系统中完全适用其他linux系统由于包管理工具与软件安装路径的差异相关配置可能略有出入">  一个家用服务器常用服务的详细搭建教程，包括但不限于<font color=red>samba文件共享、FTP服务器、FRP内网穿透、AdGuard Home广告过滤、qBittorrent Web下载器</font>等服务的搭建教程；文中所用文本编辑器为vim，不熟悉相关用法可用其他编辑器替代或自行百度相关命令及用法，本文不再赘述；以下内容在<font color=red>Ubuntu 20.04 LTS Server</font>系统中完全适用，其他Linux系统由于包管理工具与软件安装路径的差异，相关配置可能略有出入。</h4>
+            </div><div class="content" id="content"><p><strong>  一个家用服务器常用服务的详细搭建教程，包括但不限于<font color=red>samba文件共享、FTP服务器、FRP内网穿透、AdGuard Home广告过滤、qBittorrent Web下载器</font>等服务的搭建教程；文中所用文本编辑器为vim，不熟悉相关用法可用其他编辑器替代或自行百度相关命令及用法，本文不再赘述；以下内容在<font color=red>Ubuntu 20.04 LTS Server</font>系统中完全适用，其他Linux系统由于包管理工具与软件安装路径的差异，相关配置可能略有出入。</strong></p>
 <hr>
 <p>目前只更新了samba的配置，后续会逐步完善内容(主要是Markdown语法我还没研究明白🤡)</p>
 <hr>
@@ -714,7 +712,7 @@ Subsystem sftp internal-sftp<br>
                             <a class="link-to-markdown" href="/demo/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://tyler-sdust.github.io/demo/" data-title="家用Linux服务器通用服务搭建教程"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://tyler-sdust.github.io/demo/" data-title="家用Linux服务器通用服务搭建教程"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://tyler-sdust.github.io/demo/" data-title="家用Linux服务器通用服务搭建教程" data-ralateuid="u/5445769948"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="https://tyler-sdust.github.io/demo/" data-title="家用Linux服务器通用服务搭建教程"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://tyler-sdust.github.io/demo/" data-title="家用Linux服务器通用服务搭建教程"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://tyler-sdust.github.io/demo/" data-title="家用Linux服务器通用服务搭建教程"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://tyler-sdust.github.io/demo/" data-title="家用Linux服务器通用服务搭建教程" data-image="/images/title.jpg" data-ralateuid="u/5445769948"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="https://tyler-sdust.github.io/demo/" data-title="家用Linux服务器通用服务搭建教程"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>

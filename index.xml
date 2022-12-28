@@ -11,7 +11,9 @@
     <pubDate>Mon, 26 Dec 2022 22:11:54 &#43;0800</pubDate>
     <author>Tyler</author>
     <guid>https://tyler-sdust.github.io/demo/</guid>
-    <description><![CDATA[一个家用服务器常用服务的详细搭建教程，包括但不限于samba文件共享、FTP服务器、FRP内网穿透、AdGuard Home广告过滤、qBit]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/title.jpg" referrerpolicy="no-referrer">
+            </div>一个家用服务器常用服务的详细搭建教程，包括但不限于samba文件共享、FTP服务器、FRP内网穿透、AdGuard Home广告过滤、qBit]]></description>
 </item>
 <item>
     <title>这里什么也没有</title>
