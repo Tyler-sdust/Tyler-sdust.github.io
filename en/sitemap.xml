@@ -11,15 +11,6 @@
                     hreflang="en"
                     href="https://tyler-sdust.github.io/en/categories/"
                     /></url><url>
-            <loc>https://tyler-sdust.github.io/en/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://tyler-sdust.github.io/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://tyler-sdust.github.io/en/"
-                    /></url><url>
             <loc>https://tyler-sdust.github.io/en/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
@@ -28,4 +19,13 @@
                     rel="alternate"
                     hreflang="en"
                     href="https://tyler-sdust.github.io/en/tags/"
+                    /></url><url>
+            <loc>https://tyler-sdust.github.io/en/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="https://tyler-sdust.github.io/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="https://tyler-sdust.github.io/en/"
                     /></url></urlset>
