@@ -4,10 +4,12 @@
  **&emsp;&emsp;一个家用服务器常用服务的详细搭建教程，包括但不限于<font color=red>samba文件共享、FTP服务器、FRP内网穿透、AdGuard Home广告过滤、qBittorrent Web下载器</font>等服务的搭建教程；文中所用文本编辑器为vim，不熟悉相关用法可用其他编辑器替代或自行百度相关命令及用法，本文不再赘述；以下内容在<font color=red>Ubuntu 20.04 LTS Server</font>系统中完全适用，其他Linux系统由于包管理工具与软件安装路径的差异，相关配置可能略有出入。**
 
 * * *
-本文是视频[<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-svg-src="/lib/simple-icons/icons/bilibili.min.svg" class="icon"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858.0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234.0 01-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373s.653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836.0 01.16-.213l2.853-2.747c.267-.249.573-.373.92-.373s.662.151.929.4.391.551.391.907c0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373.0.684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373.0.684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"></path></svg>Linux服务器应用搭建教程](https://www.bilibili.com/video/BV1HS4y1S7P9)的文字版教程，目前只更新了一部分视频中的配置，后续会逐步完善文章内容🤡
+本文是视频[<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-svg-src="/lib/simple-icons/icons/bilibili.min.svg" class="icon"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858.0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234.0 01-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373s.653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836.0 01.16-.213l2.853-2.747c.267-.249.573-.373.92-.373s.662.151.929.4.391.551.391.907c0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373.0.684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373.0.684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"></path></svg>Linux服务器应用搭建教程](https://www.bilibili.com/video/BV1HS4y1S7P9)的文字版教程，目前只更新了一部分视频中的配置，后续会逐步完善并增加相关内容🤡
 * * *
 
 ## **<font color=green>1. SAMBA文件共享</font>**
+
+Samba可以实现window访问Linux的资源，实现两个系统间的数据交互。samba服务程序已经成为在Linux系统和Windows系统之间共享文件的最佳选择，但是基于SMB2.0协议的客户端数据传输速度可能不及FTP。
 
 ### 1.1 安装samba
 
@@ -95,6 +97,8 @@
 
 ## **<font color=green>2. FTP服务器</font>**
 
+FTP (File Transfer Protocol) 可说是最古老的协议之一了，主要是用来进行文件的传输，尤其是大型文件的传输使用 FTP 更是方便。
+
 ### 2.1 安装vsftpd
 
 ```bash
@@ -103,7 +107,7 @@
 
 ### 2.2 修改配置文件
 
-以下是vsftpd的配置，基本配置条目已存在，只要取消注释或更改设置即可(配置文件中包含英文说明，某些主要的配置我会加上中文说明)：
+以下是vsftpd的配置，基本配置条目已存在，只要取消注释或更改设置即可(配置文件中包含英文说明，某些主要的配置我会加上中文注释)：
 
 点击展开代码块查看完整的示例配置👇
 
@@ -317,7 +321,7 @@ Subsystem sftp internal-sftp
 
 ## **<font color=green>3. FRP内网穿透</font>**
 
-目前国内家用宽带基本全是大内网，如果要从公网访问内网的设备，内网穿透技术就显得尤为重要；作者使用的内网穿透服务是[Sakura FRP](https://www.natfrp.com/)，普通用户可以免费创建两条隧道，每月有5G流量，并且每日签到会送1-4G的流量，10Mb带宽基本满足个人使用了(很良心，这个广告我必须打！！！)
+目前国内家用宽带基本全是大内网，如果要从公网访问内网的设备，内网穿透技术就显得尤为重要；作者使用的内网穿透服务是[Sakura FRP](https://www.natfrp.com/)，普通用户可以免费创建两条隧道，每月有5G流量，并且每日签到会送1-4G的流量，10Mb带宽基本满足个人使用了。
 
 |   |普通用户|青铜 VIP|白银 VIP |
 |-----|-------|--------|---------|
@@ -331,7 +335,7 @@ Subsystem sftp internal-sftp
 
 ### 3.1 注册并下载客户端软件
 
-访问[Sakura FRP](https://www.natfrp.com/)官网注册账号并登录,花一块钱完成实名认证后在找到服务中的软件下载
+访问[Sakura FRP](https://www.natfrp.com/)官网注册账号并登录,花一块钱完成实名认证后再找到服务中的软件下载
 ![软件下载](/images/FRP1.png)
 
 按照系统版本选择对应的软件版本下载或复制下载链接
@@ -363,9 +367,9 @@ frpc_linux_amd64              100%[=============================================
 
 ### 3.2 创建隧道
 
-**创建隧道前需要在*用户 实名认证* 中完成实名认证，费用为1元人民币**
+创建隧道前需要在 **用户-实名认证** 中完成实名认证**
 
-在 *服务 隧道列表* 中创建隧道  
+在 **服务-隧道列表** 中创建隧道  
 ![创建隧道](/images/FRP3.png)
 
 根据需求类型选择合适的节点，以枣庄多线2为例（使用SSH）  
@@ -379,10 +383,10 @@ frpc_linux_amd64              100%[=============================================
 
 ### 3.3 配置本地服务
 
-在 *用户 用户信息* 页面中查看<font color=red>访问密钥</font>备用，<font color=red>**注意：访问密钥是使用隧道的重要参数不要泄漏给任何人！！！**</font>  
+在 **用户-用户信息** 页面中查看<font color=red>访问密钥</font>备用，<font color=red>**注意：访问密钥是使用隧道的重要参数不要泄漏给任何人！！！**</font>  
 ![访问密钥](/images/FRP7.png)
 
-使用命令`sudo vim /lib/systemd/system/frpc.service`在`/lib/systemd/system/`下创建一个`frpc.service`服务文件
+使用命令`sudo vim /etc/systemd/system/frpc.service`在`/etc/systemd/system/`目录下编辑一个`frpc.service`服务文件
 
 文件内容如下：
 
@@ -444,10 +448,162 @@ sudo systemctl status frpc
 lines 1-20/20 (END)
 ```
 
-提示信息中会有类似下面这样使用隧道的提示字样，内容为隧道的外网访问地址和端口
+提示信息中会有类似以下使用隧道的提示字样，内容为隧道的外网访问地址和端口
 >使用 [**********.natfrp.cloud:3*****6] 来连接到你的隧道
 
 ### 3.4 测试隧道连接
 
 使用上面提示的链接与端口尝试通过SSH连接Ubuntu服务器，出现输入密钥密码提示，证明隧道启动成功！  
 ![SSH](/images/FRP8.png)
+
+## **<font color=green>4. AdGuard Home</font>**
+
+家用网络通常是光猫拨号，默认使用ISP(互联网服务提供商)提供的DNS(域名服务器)服务器，因为DNS污染严重导致某些网站(如GitHub)经常被解析到错误的IP地址，导致网站无法正常访问。
+
+AdGuard Home 是 AdGuard 开源的一个私人 DNS 服务端，只需在网关部署，即可实现全局域网的广告拦截与隐私反追踪。在 DNS 解析的过程中，匹配规则库内的 Url 进行拦截，同时在客户端中，还可以通过自定义过滤规则实现网页 DOM 的拦截。
+
+>AdGuard Home 是一款全网广告拦截与反跟踪软件。在您将其安装完毕后，它将保护您所有家用设备，同时您不再需要安装任何客户端软件。随着物联网与连接设备的兴起，掌控您自己的整个网络环境变得越来越重要。  
+</br>
+—— AdGuard Home
+
+### 4.1 安装AdGuard Home
+
+点击前往[AdGuard Homed的GitHub主页](https://github.com/AdguardTeam/AdGuardHome)，README.md中提供了全自动安装脚本
+![Automated install](/images/ADGH1.png)
+
+直接执行其提供的安装命令即可(需要root权限)
+
+```bash
+sudo curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
+```
+
+若执行时提示服务器拒绝连接可编辑配置文件`/etc/systemd/resolved.conf`将DNS改为以下任意DNS地址后重新执行
+
+>几个可用的DNS:  
+cloudflare DNS: 1.0.0.1 , 1.1.1.1  
+Google Public DNS: 8.8.8.8 , 8.8.4.4  
+百度公共 DNS: 180.76.76.76  
+DNSPod(腾讯) DNS: 119.29.29.29  
+阿里云 DNS: 223.5.5.5 , 223.6.6.6  
+OneDNS: 117.50.10.10  
+DNS派 电信DNS: 101.226.4.6 , 移动DNS：218.30.118.6  
+114 DNS: 114.114.114.114 , 114.114.115.115  
+
+脚本会自动安装配置并启动服务，执行`sudo systemctl status AdGuardHome.service`命令可查看服务运行状态
+
+```bash
+➜  ~ cat /etc/systemd/system/AdGuardHome.service
+[Unit]
+Description=AdGuard Home: Network-level blocker
+ConditionFileIsExecutable=/home/tyler/AdGuardHome/AdGuardHome
+After=syslog.target network-online.target
+
+[Service]
+StartLimitInterval=5
+StartLimitBurst=10
+ExecStart=/home/tyler/AdGuardHome/AdGuardHome "-s" "run"
+
+WorkingDirectory=/home/tyler/AdGuardHome
+
+
+
+StandardOutput=file:/var/log/AdGuardHome.out
+StandardError=file:/var/log/AdGuardHome.err
+Restart=always
+RestartSec=10
+EnvironmentFile=-/etc/sysconfig/AdGuardHome
+
+[Install]
+WantedBy=multi-user.target
+➜  ~
+```
+
+### 4.2 设置AdGuard Home并添加屏蔽规则
+
+AdGuard Home Web界面默认在3000端口可通过Web页面修改端口，访问服务器IP:3000即可查看Web页面；如果Web页面打不开检查防火墙是否已打开3000端口,Ubuntu防火墙开放3000端口命令为`sudo ufw allow 3000`。首次访问会引导用户配置登陆密码  
+![首次访问](/images/ADGH2.png)
+
+80是HTTP网站的默认端口，如果你的服务器有建站计划，建议这里不要把网页管理界面端口设置成80；
+客户端访问DNS默认使用53端口，为了避免不必要的麻烦不要修改DNS服务器的监听端口！  
+另外，作为DNS服务器必须使用静态IP，服务器IP变化将会导致域名解析失败。  
+![首次访问](/images/ADGH3.png)
+
+配置好用户名密码后即可访问管理页面，在 **设置-DNS设置** 中可以配置上游DNS  
+![首次访问](/images/ADGH5.png)
+
+在 **过滤器-DNS 拦截列表** 中可以配置 adblock 规则和 Hosts 语法  
+![首次访问](/images/ADGH6.png)
+
+以下为作者自用的几个规则：
+
+>乘风广告：https://gitee.com/xinggsf/Adblock-Rule/raw/master/rule.txt  
+乘风视频：https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt  
+广告终结者：http://sub.adtchrome.com/adt-chinalist-easylist360.txt  
+EasyList China：https://easylist-downloads.adblockplus.org/easylistchina.txt  
+澳门皇家赌场专用屏蔽规则：https://raw.githubusercontent.com/Goooler/1024_hosts/master/hosts  
+CHN: AdRules DNS List：https://adguardteam.github.io/HostlistsRegistry/assets/filter_29.txt  
+CHN: anti-AD：https://adguardteam.github.io/HostlistsRegistry/assets/filter_21.txt  
+知乎广告：https://cdn.jsdelivr.net/gh/zsakvo/AdGuard-Custom-Rule@master/rule/zhihu-strict.txt  
+ChinaList+EasyList(淇)：http://sub.adtchrome.com/adt-chinalist-easylist.txt  
+EasyPrivacy：https://easylist-downloads.adblockplus.org/easyprivacy.txt  
+
+### 4.3 设置默认DNS服务器
+
+直接设置路由器的DHCP服务器(以小米路由器为例，其他品牌方法大同小异)，登录路由器后台，在 **常用设置-局域网设置-DHCP服务** 中将DNS1设置为服务器的地址，若服务器7*24小时运行可不设置DNS2，保存设置后连接到此路由器的设备都会使用AdGuard Home作为DNS服务器。  
+![设置DNS](/images/ADGH7.png)
+
+### 4.4 测试DNS服务器
+
+不使用AdGuard Home服务器的设备：  
+
+```bash
+#使用nslookup命令查询github素材服务器raw.githubusercontent.com的IP地址，结果为0.0.0.0
+➜  ~ nslookup raw.githubusercontent.com
+Server:         192.168.1.1
+Address:        192.168.1.1#53
+
+Non-authoritative answer:
+Name:   raw.githubusercontent.com
+Address: 0.0.0.0
+Name:   raw.githubusercontent.com
+Address: ::
+
+#cm.ipinyou.com是某视频广告的域名，使用nslookup命令查询可以得到IP
+➜  ~ nslookup cm.ipinyou.com
+Server:         192.168.1.1
+Address:        192.168.1.1#53
+
+Non-authoritative answer:
+Name:   cm.ipinyou.com
+Address: 152.136.199.109
+Name:   cm.ipinyou.com
+Address: 152.136.179.124
+Name:   cm.ipinyou.com
+Address: 152.136.187.208
+```
+
+使用AdGuard Home服务器的设备：  
+
+```bash
+➜  ~ nslookup raw.githubusercontent.com
+服务器:  UnKnown
+Address:  192.168.31.52
+
+非权威应答:
+名称:    raw.githubusercontent.com
+Addresses:  2606:50c0:8003::154
+          2606:50c0:8000::154
+          2606:50c0:8002::154
+          185.199.111.133
+          185.199.110.133
+          185.199.108.133
+          185.199.109.133
+
+➜  ~ nslookup cm.ipinyou.com
+服务器:  UnKnown
+Address:  192.168.31.52
+
+*** UnKnown 找不到 cm.ipinyou.com: Query refused
+```
+
+经过对比不难发现AdGuard Home是可以规避DNS污染并实现广告过滤的。
