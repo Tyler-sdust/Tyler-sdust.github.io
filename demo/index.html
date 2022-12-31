@@ -26,7 +26,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/tyler-sdust.github.io\/demo\/"
-        },"genre": "posts","wordcount":  6627 ,
+        },"genre": "posts","wordcount":  6658 ,
         "url": "https:\/\/tyler-sdust.github.io\/demo\/","datePublished": "2022-12-26T22:11:54+08:00","dateModified": "2022-12-26T22:11:54+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -120,7 +120,7 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">家用Linux服务器通用服务搭建教程</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Tyler-sdust" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Tyler</a>
 </span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-26">2022-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6627 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-26">2022-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6658 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -1077,47 +1077,25 @@ DNS派 电信DNS: 101.226.4.6 , 移动DNS：218.30.118.6<br>
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">➜  ~ cat /etc/systemd/system/AdGuardHome.service
-<span class="o">[</span>Unit<span class="o">]</span>
-<span class="nv">Description</span><span class="o">=</span>AdGuard Home: Network-level blocker
-<span class="nv">ConditionFileIsExecutable</span><span class="o">=</span>/home/tyler/AdGuardHome/AdGuardHome
-<span class="nv">After</span><span class="o">=</span>syslog.target network-online.target
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">➜  ~ sudo systemctl status AdGuardHome.service
+● AdGuardHome.service - AdGuard Home: Network-level blocker
+     Loaded: loaded <span class="o">(</span>/etc/systemd/system/AdGuardHome.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+     Active: active <span class="o">(</span>running<span class="o">)</span> since Sat 2022-12-31 06:01:04 CST<span class="p">;</span> 15h ago
+   Main PID: <span class="m">694</span> <span class="o">(</span>AdGuardHome<span class="o">)</span>
+      Tasks: <span class="m">12</span> <span class="o">(</span>limit: 4561<span class="o">)</span>
+     Memory: 63.8M
+        CPU: 4min 40.054s
+     CGroup: /system.slice/AdGuardHome.service
+             └─694 /home/tyler/AdGuardHome/AdGuardHome -s run
 
-<span class="o">[</span>Service<span class="o">]</span>
-<span class="nv">StartLimitInterval</span><span class="o">=</span><span class="m">5</span>
-<span class="nv">StartLimitBurst</span><span class="o">=</span><span class="m">10</span>
-<span class="nv">ExecStart</span><span class="o">=</span>/home/tyler/AdGuardHome/AdGuardHome <span class="s2">&#34;-s&#34;</span> <span class="s2">&#34;run&#34;</span>
-
-<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/tyler/AdGuardHome
-
-
-
-<span class="nv">StandardOutput</span><span class="o">=</span>file:/var/log/AdGuardHome.out
-<span class="nv">StandardError</span><span class="o">=</span>file:/var/log/AdGuardHome.err
-<span class="nv">Restart</span><span class="o">=</span>always
-<span class="nv">RestartSec</span><span class="o">=</span><span class="m">10</span>
-<span class="nv">EnvironmentFile</span><span class="o">=</span>-/etc/sysconfig/AdGuardHome
-
-<span class="o">[</span>Install<span class="o">]</span>
-<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+12月 <span class="m">31</span> 06:01:04 ubuntu systemd<span class="o">[</span>1<span class="o">]</span>: Started AdGuard Home: Network-level blocker.
 ➜  ~
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="42-设置adguard-home并添加屏蔽规则">4.2 设置AdGuard Home并添加屏蔽规则</h3>
-<p>AdGuard Home Web界面默认在3000端口可通过Web页面修改端口，访问服务器IP:3000即可查看Web页面；如果Web页面打不开检查防火墙是否已打开3000端口,Ubuntu防火墙开放3000端口命令为<code>sudo ufw allow 3000</code>。首次访问会引导用户配置登陆密码<br>
+<p>AdGuard Home Web界面默认在3000端口可通过Web页面修改端口，访问服务器IP:3000即可查看Web页面；如果Web页面无法访问，请检查防火墙是否已打开3000端口,Ubuntu防火墙开放3000端口命令为<code>sudo ufw allow 3000</code>。首次访问会引导用户配置登陆密码<br>
 <img
         class="lazyload"
         src="/svg/loading.min.svg"

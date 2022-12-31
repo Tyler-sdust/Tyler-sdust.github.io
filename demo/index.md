@@ -492,35 +492,24 @@ DNS派 电信DNS: 101.226.4.6 , 移动DNS：218.30.118.6
 脚本会自动安装配置并启动服务，执行`sudo systemctl status AdGuardHome.service`命令可查看服务运行状态
 
 ```bash
-➜  ~ cat /etc/systemd/system/AdGuardHome.service
-[Unit]
-Description=AdGuard Home: Network-level blocker
-ConditionFileIsExecutable=/home/tyler/AdGuardHome/AdGuardHome
-After=syslog.target network-online.target
+➜  ~ sudo systemctl status AdGuardHome.service
+● AdGuardHome.service - AdGuard Home: Network-level blocker
+     Loaded: loaded (/etc/systemd/system/AdGuardHome.service; enabled; vendor preset: enabled)
+     Active: active (running) since Sat 2022-12-31 06:01:04 CST; 15h ago
+   Main PID: 694 (AdGuardHome)
+      Tasks: 12 (limit: 4561)
+     Memory: 63.8M
+        CPU: 4min 40.054s
+     CGroup: /system.slice/AdGuardHome.service
+             └─694 /home/tyler/AdGuardHome/AdGuardHome -s run
 
-[Service]
-StartLimitInterval=5
-StartLimitBurst=10
-ExecStart=/home/tyler/AdGuardHome/AdGuardHome "-s" "run"
-
-WorkingDirectory=/home/tyler/AdGuardHome
-
-
-
-StandardOutput=file:/var/log/AdGuardHome.out
-StandardError=file:/var/log/AdGuardHome.err
-Restart=always
-RestartSec=10
-EnvironmentFile=-/etc/sysconfig/AdGuardHome
-
-[Install]
-WantedBy=multi-user.target
+12月 31 06:01:04 ubuntu systemd[1]: Started AdGuard Home: Network-level blocker.
 ➜  ~
 ```
 
 ### 4.2 设置AdGuard Home并添加屏蔽规则
 
-AdGuard Home Web界面默认在3000端口可通过Web页面修改端口，访问服务器IP:3000即可查看Web页面；如果Web页面打不开检查防火墙是否已打开3000端口,Ubuntu防火墙开放3000端口命令为`sudo ufw allow 3000`。首次访问会引导用户配置登陆密码  
+AdGuard Home Web界面默认在3000端口可通过Web页面修改端口，访问服务器IP:3000即可查看Web页面；如果Web页面无法访问，请检查防火墙是否已打开3000端口,Ubuntu防火墙开放3000端口命令为`sudo ufw allow 3000`。首次访问会引导用户配置登陆密码  
 ![首次访问](/images/ADGH2.png)
 
 80是HTTP网站的默认端口，如果你的服务器有建站计划，建议这里不要把网页管理界面端口设置成80；
