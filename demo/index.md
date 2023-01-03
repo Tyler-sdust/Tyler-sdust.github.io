@@ -335,10 +335,10 @@ Subsystem sftp internal-sftp
 
 ### 3.1 注册并下载客户端软件
 
-访问[Sakura FRP](https://www.natfrp.com/)官网注册账号并登录,花一块钱完成实名认证后再找到服务中的软件下载
+访问[Sakura FRP](https://www.natfrp.com/)官网注册账号并登录,花一块钱完成实名认证后再找到服务中的软件下载  
 ![软件下载](/images/FRP1.png)
 
-按照系统版本选择对应的软件版本下载或复制下载链接
+按照系统版本选择对应的软件版本下载或复制下载链接  
 ![下载](/images/FRP2.png)
 
 使用`wget`命令下载到服务器并保存为/usr/local/bin/frpc备用
@@ -596,3 +596,72 @@ Address:  192.168.31.52
 ```
 
 经过对比不难发现AdGuard Home是可以规避DNS污染并实现广告过滤的。
+
+## **<font color=green>5. qBittorrent Web UI</font>**
+
+最早我用的下载器是transmission的web端，但是transmission有一个很麻烦的缺点就是不能自动添加tracker，每次下载都要手动添加，尝试过用脚本自动添加效果也不是很好，后来就转用qbittorrent-nox了🥲
+
+### 4.1 安装qbittorrent-nox
+
+一条命令`sudo apt install qbittorrent-nox`就可以了，但是软件库这个版本好像有点BUG，同时添加多个种子Web UI容易卡死，所以本文还提供了最新稳定版和测试版软件的安装方法：
+
+```bash
+#添加软件通用属性，方便apt管理
+sudo apt install software-properties-common
+#添加 qBittorrent 稳定版软件源（二选一）
+sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
+#添加 qBittorrent 测试版软件源（二选一）
+sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-unstable
+#更新软件源信息
+sudo apt update
+#安装
+sudo apt install qbittorrent-nox
+```
+
+### 4.2 添加系统服务
+
+还是写一个`/etc/systemd/system/qbittorrent-nox.service`文件，内容如下：
+
+```bash
+[Unit]
+Description=qBittorrent Command Line Client
+After=network.target
+
+[Service]
+#Do not change to "simple"
+Type=forking
+#User是指定使用哪个本地用户启动qBittorrent，启动后生成的配置文件会保存在对应用户的home目录下
+User=share
+RemainAfterExit=yes
+ExecStart=/usr/bin/qbittorrent-nox -d
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+启动服务并设置开机启动
+
+```bash
+#启动服务
+sudo systemctl start qbittorrent-nox.service
+#查看服务状态
+sudo systemctl status qbittorrent-nox.service
+#添加开机启动
+sudo systemctl enable qbittorrent-nox.service
+```
+
+### 4.3 配置及优化
+
+Web UI默认监听8080端口，通过IP:8080访问，初次访问用户名为admin密码为adminadmin。  
+直接添加种子或磁力可能没有下载速度，需要添加tracker,图中tracker可以点 [这里](https://github.com/ngosang/trackerslist)获取  
+![tracker](/images/qBt1.png)
+
+自带的Web UI没有对移动端做优化适配，可以使用第三方UI，点击下载 [界面美化包](https://github.com/CzBiX/qb-web/releases)，下载ZIP包并解压都服务器上  
+![UI美化包](/images/qBt2.png)
+
+在设置中的Web UI选项卡中启用备用Web UI并填写解压资源的绝对路径，保存后即可启用新UI  
+![备用UI](/images/qBt3.png)
+
+优化后的UI优点是美观了不少，但是缺点是部分功能被阉割  
+![备用UI](/images/qBt4.png)
