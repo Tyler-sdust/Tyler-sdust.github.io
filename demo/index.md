@@ -601,7 +601,7 @@ Address:  192.168.31.52
 
 最早我用的下载器是transmission的web端，但是transmission有一个很麻烦的缺点就是不能自动添加tracker，每次下载都要手动添加，尝试过用脚本自动添加效果也不是很好，后来就转用qbittorrent-nox了🥲
 
-### 4.1 安装qbittorrent-nox
+### 5.1 安装qbittorrent-nox
 
 一条命令`sudo apt install qbittorrent-nox`就可以了，但是软件库这个版本好像有点BUG，同时添加多个种子Web UI容易卡死，所以本文还提供了最新稳定版和测试版软件的安装方法：
 
@@ -618,7 +618,7 @@ sudo apt update
 sudo apt install qbittorrent-nox
 ```
 
-### 4.2 添加系统服务
+### 5.2 添加系统服务
 
 还是写一个`/etc/systemd/system/qbittorrent-nox.service`文件，内容如下：
 
@@ -651,7 +651,7 @@ sudo systemctl status qbittorrent-nox.service
 sudo systemctl enable qbittorrent-nox.service
 ```
 
-### 4.3 配置及优化
+### 5.3 配置及优化
 
 Web UI默认监听8080端口，通过IP:8080访问，初次访问用户名为admin密码为adminadmin。  
 直接添加种子或磁力可能没有下载速度，需要添加tracker,图中tracker可以点 [这里](https://github.com/ngosang/trackerslist)获取  
